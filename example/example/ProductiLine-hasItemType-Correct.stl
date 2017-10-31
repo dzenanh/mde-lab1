@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<stl:ProductLine xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:stl="http://www.example.org/stl">
+  <itemtype/>
+  <area name="ProductionArea"/>
+</stl:ProductLine>

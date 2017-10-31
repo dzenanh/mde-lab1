@@ -3,6 +3,11 @@
   <viewpoint:DAnalysis xmi:id="_v5pG0LzeEeecoPjQhFHQJQ" selectedViews="_v82L0LzeEeecoPjQhFHQJQ" version="12.0.0.201704271200">
     <semanticResources>stl.ecore</semanticResources>
     <semanticResources>stl.genmodel</semanticResources>
+    <semanticResources>SomeSome.xmi</semanticResources>
+    <semanticResources>constraint4invalid.xmi</semanticResources>
+    <semanticResources>constraint4valid.xmi</semanticResources>
+    <semanticResources>constraint1valid.xmi</semanticResources>
+    <semanticResources>constraint1invalid.xmi</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" xmi:id="_v82L0LzeEeecoPjQhFHQJQ">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
       <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_v9NYMbzeEeecoPjQhFHQJQ" name="stl" repPath="#_v9MxILzeEeecoPjQhFHQJQ">

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<stl:ProductLine
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:stl="http://www.example.org/stl"
+    xsi:schemaLocation="http://www.example.org/stl stl.ecore">
+  <itemtype
+      name="Something"/>
+  <itemtype
+      name="Something2"/>
+  <area name="Area1">
+    <connector
+        isInput="//@area.1/@component.0/@slot.0"
+        isOutput="//@area.0/@component.0/@slot.0"
+        component="//@area.0/@component.0 //@area.1/@component.0"/>
+    <component
+        xsi:type="stl:ItemGenerator"
+        connector="//@area.0/@connector.0"
+        itemtype="//@itemtype.0">
+      <slot
+          connectorOutput="//@area.0/@connector.0"
+          itemtype="//@itemtype.0"
+          name="OutputSlot"
+          isOutput="true"/>
+    </component>
+  </area>
+  <area name="Area2">
+    <connector
+        isInput="//@area.1/@component.1/@slot.0"
+        isOutput="//@area.1/@component.0/@slot.1"
+        component="//@area.1/@component.0 //@area.1/@component.1"/>
+    <component
+        xsi:type="stl:WasteStore"
+        connector="//@area.0/@connector.0 //@area.1/@connector.0"
+        itemtype="//@itemtype.0">
+      <slot
+          connectorInput="//@area.0/@connector.0"
+          itemtype="//@itemtype.0"
+          name="InputSlot"
+          isInput="true"/>
+      <slot
+          connectorOutput="//@area.1/@connector.0"
+          itemtype="//@itemtype.0"
+          name="OutputSlot2"
+          isOutput="true"/>
+    </component>
+    <component
+        xsi:type="stl:ProductionStore"
+        connector="//@area.1/@connector.0"
+        itemtype="//@itemtype.0">
+      <slot
+          connectorInput="//@area.1/@connector.0"
+          itemtype="//@itemtype.0"
+          name="Input Slot Store"
+          isInput="true"/>
+    </component>
+  </area>
+</stl:ProductLine>
