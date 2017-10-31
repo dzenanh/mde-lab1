@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<stl:ProductLine
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:stl="http://www.example.org/stl"
+    xsi:schemaLocation="http://www.example.org/stl stl.ecore">
+  <itemtype
+      name="Type B"/>
+  <itemtype
+      name="Type A"/>
+  <area name="AreaOne">
+    <connector
+        isInput="//@area.0/@component.0/@slot.0"
+        isOutput="//@area.0/@component.1/@slot.0"
+        component="//@area.0/@component.0 //@area.0/@component.1"/>
+    <component
+        xsi:type="stl:ItemGenerator"
+        name="Generator"
+        connector="//@area.0/@connector.0"
+        itemtype="//@itemtype.1">
+      <slot
+          connectorInput="//@area.0/@connector.0"
+          itemtype="//@itemtype.1"
+          name="InputSlot"/>
+    </component>
+    <component
+        xsi:type="stl:WasteStore"
+        name="Store"
+        connector="//@area.0/@connector.0"
+        itemtype="//@itemtype.1">
+      <slot
+          connectorOutput="//@area.0/@connector.0"
+          itemtype="//@itemtype.1"
+          name="OutputSlot"/>
+    </component>
+  </area>
+</stl:ProductLine>

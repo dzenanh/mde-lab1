@@ -14,6 +14,12 @@
     <semanticResources>constraint3invalid.xmi</semanticResources>
     <semanticResources>constraint8invalid.xmi</semanticResources>
     <semanticResources>constraint8valid.xmi</semanticResources>
+    <semanticResources>constraint6invalid.xmi</semanticResources>
+    <semanticResources>constraint6valid.xmi</semanticResources>
+    <semanticResources>constraint7invalid.xmi</semanticResources>
+    <semanticResources>constraint7valid.xmi</semanticResources>
+    <semanticResources>constraint2invalid.xmi</semanticResources>
+    <semanticResources>constraint2valid.xmi</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" xmi:id="_v82L0LzeEeecoPjQhFHQJQ">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
       <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_v9NYMbzeEeecoPjQhFHQJQ" name="stl" repPath="#_v9MxILzeEeecoPjQhFHQJQ">
