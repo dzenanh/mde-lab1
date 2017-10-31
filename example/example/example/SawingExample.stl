@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<stl:ProductLine xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:stl="http://www.example.org/stl">
+  <itemtype name="RawShelf"/>
+  <itemtype name="Shelf"/>
+  <itemtype name="WoodWaste"/>
+  <area name="ProductionArea">
+    <connector isInput="//@area.0/@component.1/@slot.0" isOutput="//@area.0/@component.0/@slot.0" component="//@area.0/@component.0 //@area.0/@component.1"/>
+    <connector isInput="//@area.0/@component.2/@slot.0" isOutput="//@area.0/@component.1/@slot.1" component="//@area.0/@component.1 //@area.0/@component.2"/>
+    <connector isInput="//@area.0/@component.3/@slot.0" isOutput="//@area.0/@component.2/@slot.1" component="//@area.0/@component.3 //@area.0/@component.2"/>
+    <connector isInput="//@area.0/@component.4/@slot.0" isOutput="//@area.0/@component.3/@slot.1" component="//@area.0/@component.3 //@area.0/@component.4"/>
+    <connector isInput="//@area.0/@component.5/@slot.0" isOutput="//@area.0/@component.3/@slot.2" component="//@area.0/@component.5 //@area.0/@component.3"/>
+    <connector isInput="//@area.1/@component.0/@slot.0" isOutput="//@area.0/@component.4/@slot.1" component="//@area.1/@component.0 //@area.0/@component.4"/>
+    <connector isInput="//@area.0/@component.6/@slot.0" isOutput="//@area.0/@component.5/@slot.1" component="//@area.0/@component.5 //@area.0/@component.6"/>
+    <connector isInput="//@area.1/@component.1/@slot.0" isOutput="//@area.0/@component.6/@slot.1" component="//@area.0/@component.6 //@area.1/@component.1"/>
+    <connector isInput="//@area.1/@component.0/@slot.1" isOutput="//@area.0/@component.0/@slot.1" component="//@area.0/@component.0 //@area.1/@component.0"/>
+    <component xsi:type="stl:ItemGenerator" name="RawShelfProducer" connector="//@area.0/@connector.0 //@area.0/@connector.8" itemtype="//@itemtype.0">
+      <slot connectorOutput="//@area.0/@connector.0" itemtype="//@itemtype.0" name="RawShelfProducer_Output" isOutput="true"/>
+      <slot connectorOutput="//@area.0/@connector.8" itemtype="//@itemtype.0" name="Slot RawShelfProducer_Output_Test" isOutput="true"/>
+    </component>
+    <component xsi:type="stl:Conveyor" name="ToBufferConveyor" connector="//@area.0/@connector.1 //@area.0/@connector.0">
+      <slot connectorInput="//@area.0/@connector.0" itemtype="//@itemtype.0" name="BufferConveyor_Input" isInput="true"/>
+      <slot connectorOutput="//@area.0/@connector.1" itemtype="//@itemtype.0" name="BufferConveyor_Output" isOutput="true"/>
+    </component>
+    <component xsi:type="stl:Buffer" name="Buffer" connector="//@area.0/@connector.1 //@area.0/@connector.2">
+      <slot connectorInput="//@area.0/@connector.1" itemtype="//@itemtype.0" name="Buffer_Input" isInput="true"/>
+      <slot connectorOutput="//@area.0/@connector.2" itemtype="//@itemtype.0" name="Buffer_Output" isOutput="true"/>
+    </component>
+    <component xsi:type="stl:Machine" name="SawingMachine" costs="1000.0" connector="//@area.0/@connector.3 //@area.0/@connector.2 //@area.0/@connector.4">
+      <service name="Saw" reliability="0.99" processingTime="30.0">
+        <parameter name="parameter2"/>
+        <parameter name="parameter1"/>
+      </service>
+      <slot connectorInput="//@area.0/@connector.2" itemtype="//@itemtype.0" name="SawingMachine_Input" isInput="true"/>
+      <slot connectorOutput="//@area.0/@connector.3" itemtype="//@itemtype.1" name="SawingMachine_ProductOutput" isOutput="true"/>
+      <slot connectorOutput="//@area.0/@connector.4" itemtype="//@itemtype.2" name="SawingMachine_WasteOutput"/>
+    </component>
+    <component xsi:type="stl:Conveyor" name="ToShelfStoreConveyor" connector="//@area.0/@connector.3 //@area.0/@connector.5">
+      <slot connectorInput="//@area.0/@connector.3" itemtype="//@itemtype.1" name="ShelfStoreConveyor_Input" isInput="true"/>
+      <slot connectorOutput="//@area.0/@connector.5" itemtype="//@itemtype.1" name="ShelfStoreConveyor_Output" isOutput="true"/>
+    </component>
+    <component xsi:type="stl:TurnTable" name="TurnTable" connector="//@area.0/@connector.6 //@area.0/@connector.4">
+      <slot connectorInput="//@area.0/@connector.4" itemtype="//@itemtype.2" name="TurnTable_Input" isInput="true"/>
+      <slot connectorOutput="//@area.0/@connector.6" itemtype="//@itemtype.2" name="TurnTable_Output"/>
+    </component>
+    <component xsi:type="stl:Conveyor" name="ToWasteStoreConveyor" connector="//@area.0/@connector.7 //@area.0/@connector.6">
+      <slot connectorInput="//@area.0/@connector.6" itemtype="//@itemtype.2" name="WasteStoreConveyor_Input" isInput="true"/>
+      <slot connectorOutput="//@area.0/@connector.7" itemtype="//@itemtype.2" name="WasteStoreConveyor_Output" isOutput="true"/>
+    </component>
+  </area>
+  <area name="StoreArea">
+    <component xsi:type="stl:ProductionStore" name="ShelfStore" connector="//@area.0/@connector.5 //@area.0/@connector.8" capacity="10" itemtype="//@itemtype.1">
+      <slot connectorInput="//@area.0/@connector.5" itemtype="//@itemtype.1" name="ProductStore_Input" isInput="true"/>
+      <slot connectorInput="//@area.0/@connector.8" itemtype="//@itemtype.0" name="ProductStore_Input_Test" isInput="true"/>
+    </component>
+    <component xsi:type="stl:WasteStore" name="WoodWaste" connector="//@area.0/@connector.7" capacity="10" itemtype="//@itemtype.2">
+      <slot connectorInput="//@area.0/@connector.7" itemtype="//@itemtype.2" name="WasteStore_Input" isInput="true"/>
+    </component>
+  </area>
+</stl:ProductLine>
