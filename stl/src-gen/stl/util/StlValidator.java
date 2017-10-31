@@ -308,6 +308,8 @@ public class StlValidator extends EObjectValidator {
 			result &= validate_EveryMapEntryUnique(connector, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validateConnector_SlotHasSameInputOutputTypeItemType(connector, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateConnector_SlotHasDifferentComponentInputAndOutput(connector, diagnostics, context);
 		return result;
 	}
 
@@ -332,6 +334,29 @@ public class StlValidator extends EObjectValidator {
 				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "SlotHasSameInputOutputTypeItemType",
 				CONNECTOR__SLOT_HAS_SAME_INPUT_OUTPUT_TYPE_ITEM_TYPE__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE,
 				0);
+	}
+
+	/**
+	 * The cached validation expression for the SlotHasDifferentComponentInputAndOutput constraint of '<em>Connector</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String CONNECTOR__SLOT_HAS_DIFFERENT_COMPONENT_INPUT_AND_OUTPUT__EEXPRESSION = "\n"
+			+ "\t\t\tself.isInput <> self.isOutput";
+
+	/**
+	 * Validates the SlotHasDifferentComponentInputAndOutput constraint of '<em>Connector</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateConnector_SlotHasDifferentComponentInputAndOutput(Connector connector,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate(StlPackage.Literals.CONNECTOR, connector, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "SlotHasDifferentComponentInputAndOutput",
+				CONNECTOR__SLOT_HAS_DIFFERENT_COMPONENT_INPUT_AND_OUTPUT__EEXPRESSION, Diagnostic.ERROR,
+				DIAGNOSTIC_SOURCE, 0);
 	}
 
 	/**
@@ -497,6 +522,8 @@ public class StlValidator extends EObjectValidator {
 			result &= validateComponent_ServiceAvailailability(itemGenerator, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validateItemGenerator_ItemProducedSameAsOutput(itemGenerator, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateItemGenerator_NoInputSlots(itemGenerator, diagnostics, context);
 		return result;
 	}
 
@@ -520,6 +547,28 @@ public class StlValidator extends EObjectValidator {
 		return validate(StlPackage.Literals.ITEM_GENERATOR, itemGenerator, diagnostics, context,
 				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "ItemProducedSameAsOutput",
 				ITEM_GENERATOR__ITEM_PRODUCED_SAME_AS_OUTPUT__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
+	}
+
+	/**
+	 * The cached validation expression for the NoInputSlots constraint of '<em>Item Generator</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String ITEM_GENERATOR__NO_INPUT_SLOTS__EEXPRESSION = "\n"
+			+ "\t\t\tself.slot -> select(e | e.isInput = true) -> size()=0";
+
+	/**
+	 * Validates the NoInputSlots constraint of '<em>Item Generator</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateItemGenerator_NoInputSlots(ItemGenerator itemGenerator, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return validate(StlPackage.Literals.ITEM_GENERATOR, itemGenerator, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "NoInputSlots",
+				ITEM_GENERATOR__NO_INPUT_SLOTS__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
 
 	/**

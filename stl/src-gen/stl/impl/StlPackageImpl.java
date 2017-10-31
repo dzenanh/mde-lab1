@@ -932,9 +932,11 @@ public class StlPackageImpl extends EPackageImpl implements StlPackage {
 		addAnnotation(productLineEClass, source, new String[] { "constraints", "hasItemType" });
 		addAnnotation(areaEClass, source, new String[] { "constraints", "UniqueName" });
 		addAnnotation(componentEClass, source, new String[] { "constraints", "ServiceAvailailability" });
-		addAnnotation(connectorEClass, source, new String[] { "constraints", "SlotHasSameInputOutputTypeItemType" });
+		addAnnotation(connectorEClass, source, new String[] { "constraints",
+				"SlotHasSameInputOutputTypeItemType SlotHasDifferentComponentInputAndOutput" });
 		addAnnotation(bufferEClass, source, new String[] { "constraints", "OneInputSlotAndOneOutputSlot" });
-		addAnnotation(itemGeneratorEClass, source, new String[] { "constraints", "ItemProducedSameAsOutput" });
+		addAnnotation(itemGeneratorEClass, source,
+				new String[] { "constraints", "ItemProducedSameAsOutput NoInputSlots" });
 		addAnnotation(wasteStoreEClass, source, new String[] { "constraints", "NoOutputSlots" });
 	}
 
@@ -952,12 +954,15 @@ public class StlPackageImpl extends EPackageImpl implements StlPackage {
 				"\n\t\t\tArea.allInstances() -> select(e | e.name = self.name ) -> excluding(self)  -> isEmpty()" });
 		addAnnotation(componentEClass, source,
 				new String[] { "ServiceAvailailability", "\n\t\t\tself.service -> forAll(e1 | e1.reliability > 0.0)" });
-		addAnnotation(connectorEClass, source, new String[] { "SlotHasSameInputOutputTypeItemType",
-				"\n\t\t\tself.isInput.itemtype = self.isOutput.itemtype" });
+		addAnnotation(connectorEClass, source,
+				new String[] { "SlotHasSameInputOutputTypeItemType",
+						"\n\t\t\tself.isInput.itemtype = self.isOutput.itemtype",
+						"SlotHasDifferentComponentInputAndOutput", "\n\t\t\tself.isInput <> self.isOutput" });
 		addAnnotation(bufferEClass, source, new String[] { "OneInputSlotAndOneOutputSlot",
 				"\n\t\t\tself.slot -> select(e | e.isInput = true) -> size()=1 and self.slot -> select(e | e.isOutput = true) ->size()=1" });
 		addAnnotation(itemGeneratorEClass, source, new String[] { "ItemProducedSameAsOutput",
-				"\n\t\t self.slot -> select(e | e.isOutput = true) -> forAll(e | e.itemtype = self.itemtype)\n\t\t" });
+				"\n\t\t self.slot -> select(e | e.isOutput = true) -> forAll(e | e.itemtype = self.itemtype)\n\t\t",
+				"NoInputSlots", "\n\t\t\tself.slot -> select(e | e.isInput = true) -> size()=0" });
 		addAnnotation(wasteStoreEClass, source,
 				new String[] { "NoOutputSlots", "\n\t\t\tself.slot -> select(e | e.isOutput = true) -> size()=0" });
 	}

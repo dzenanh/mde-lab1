@@ -20,8 +20,8 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see stl.StlPackage#getConnector()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='SlotHasSameInputOutputTypeItemType'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot SlotHasSameInputOutputTypeItemType='\n\t\t\tself.isInput.itemtype = self.isOutput.itemtype'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='SlotHasSameInputOutputTypeItemType SlotHasDifferentComponentInputAndOutput'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot SlotHasSameInputOutputTypeItemType='\n\t\t\tself.isInput.itemtype = self.isOutput.itemtype' SlotHasDifferentComponentInputAndOutput='\n\t\t\tself.isInput &lt;&gt; self.isOutput'"
  * @generated
  */
 public interface Connector extends EObject {

@@ -15,8 +15,8 @@ package stl;
  * </ul>
  *
  * @see stl.StlPackage#getItemGenerator()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ItemProducedSameAsOutput'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot ItemProducedSameAsOutput='\n\t\t self.slot -&gt; select(e | e.isOutput = true) -&gt; forAll(e | e.itemtype = self.itemtype)\n\t\t'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ItemProducedSameAsOutput NoInputSlots'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot ItemProducedSameAsOutput='\n\t\t self.slot -&gt; select(e | e.isOutput = true) -&gt; forAll(e | e.itemtype = self.itemtype)\n\t\t' NoInputSlots='\n\t\t\tself.slot -&gt; select(e | e.isInput = true) -&gt; size()=0'"
  * @generated
  */
 public interface ItemGenerator extends Component {
