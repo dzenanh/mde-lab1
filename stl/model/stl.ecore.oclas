@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pivot:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pivot="http://www.eclipse.org/ocl/2015/Pivot"
+    xsi:schemaLocation="http://www.eclipse.org/ocl/2015/Pivot java://org.eclipse.ocl.pivot.PivotPackage" name="stl.ecore.oclas" externalURI="platform:/resource/stl/model/stl.ecore.oclas">
+  <ownedImports name="ecore" importedNamespace="pivot:Package http://www.eclipse.org/emf/2002/Ecore.oclas#//@ownedPackages.0"/>
+  <ownedImports name="ecore.xml.type" importedNamespace="pivot:Package http://www.eclipse.org/emf/2003/XMLType.oclas#//@ownedPackages.0"/>
+  <ownedPackages xmi:id="P.stl" name="stl" URI="http://www.example.org/stl" nsPrefix="stl">
+    <ownedClasses xmi:id="T.stl.ProductLine" name="ProductLine" superClasses="http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.OclElement">
+      <ownedInvariants xmi:id="cistl.ProductLine.hasItemType" name="hasItemType">
+        <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="&#xA;&#x9;&#x9;&#x9;self.itemtype -> size() > 1 "/>
+      </ownedInvariants>
+      <ownedProperties xmi:id="p.stl.ProductLine.itemtype" name="itemtype" type="#//@ownedPackages.1/@ownedClasses.0" isComposite="true"
+          opposite="#p.stl.ItemType.ProductLine"/>
+      <ownedProperties xmi:id="p.stl.ProductLine.area" name="area" type="#//@ownedPackages.1/@ownedClasses.1" isComposite="true" opposite="#p.stl.Area.ProductLine"/>
+    </ownedClasses>
+    <ownedClasses xmi:id="T.stl.Area" name="Area" superClasses="http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.OclElement">
+      <ownedInvariants xmi:id="cistl.Area.UniqueName" name="UniqueName">
+        <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="&#xA;&#x9;&#x9;&#x9;Area.allInstances() -> select(e | e.name = self.name ) -> excluding(self)  -> isEmpty()"/>
+      </ownedInvariants>
+      <ownedProperties xmi:id="p.stl.Area.connector" name="connector" type="#//@ownedPackages.1/@ownedClasses.2" isComposite="true" opposite="#p.stl.Connector.Area"/>
+      <ownedProperties xmi:id="p.stl.Area.component" name="component" type="#//@ownedPackages.1/@ownedClasses.3" isComposite="true" opposite="#p.stl.Component.Area"/>
+      <ownedProperties xmi:id="p.stl.Area.name" name="name" isRequired="false" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#String"/>
+      <ownedProperties xmi:id="p.stl.Area.ProductLine" name="ProductLine" isRequired="false" type="#T.stl.ProductLine" isImplicit="true"
+          opposite="#p.stl.ProductLine.area"/>
+    </ownedClasses>
+    <ownedClasses xmi:id="T.stl.ItemType" name="ItemType" superClasses="http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.OclElement">
+      <ownedProperties xmi:id="p.stl.ItemType.name" name="name" isRequired="false" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#String"/>
+      <ownedProperties xmi:id="p.stl.ItemType.description" name="description" isRequired="false" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#String"/>
+      <ownedProperties xmi:id="p.stl.ItemType.ProductLine" name="ProductLine" isRequired="false" type="#T.stl.ProductLine" isImplicit="true"
+          opposite="#p.stl.ProductLine.itemtype"/>
+      <ownedProperties xmi:id="p.stl.ItemType.Store" name="Store" type="#//@ownedPackages.1/@ownedClasses.4" isImplicit="true" opposite="#p.stl.Store.itemtype"/>
+      <ownedProperties xmi:id="p.stl.ItemType.ItemGenerator" name="ItemGenerator" type="#//@ownedPackages.1/@ownedClasses.5" isImplicit="true"
+          opposite="#p.stl.ItemGenerator.itemtype"/>
+      <ownedProperties xmi:id="p.stl.ItemType.Slot" name="Slot" type="#//@ownedPackages.1/@ownedClasses.6" isImplicit="true" opposite="#p.stl.Slot.itemtype"/>
+    </ownedClasses>
+    <ownedClasses xmi:id="T.stl.Component" name="Component" superClasses="http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.OclElement">
+      <ownedInvariants xmi:id="cistl.Component.ServiceAvailailability" name="ServiceAvailailability">
+        <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="&#xA;&#x9;&#x9;&#x9;self.service -> forAll(e1 | e1.reliability > 0.0)"/>
+      </ownedInvariants>
+      <ownedProperties xmi:id="p.stl.Component.service" name="service" type="#//@ownedPackages.1/@ownedClasses.7" isComposite="true" opposite="#p.stl.Service.Component"/>
+      <ownedProperties xmi:id="p.stl.Component.slot" name="slot" type="#//@ownedPackages.1/@ownedClasses.8" isComposite="true" opposite="#p.stl.Slot.Component"/>
+      <ownedProperties xmi:id="p.stl.Component.name" name="name" isRequired="false" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#String"/>
+      <ownedProperties xmi:id="p.stl.Component.costs" name="costs" type="pivot:DataType http://www.eclipse.org/emf/2003/XMLType.oclas#//@ownedPackages.0/@ownedClasses.14"/>
+      <ownedProperties xmi:id="p.stl.Component.connector" name="connector" type="#//@ownedPackages.1/@ownedClasses.2" opposite="#p.stl.Connector.component"/>
+      <ownedProperties xmi:id="p.stl.Component.Area" name="Area" isRequired="false" type="#T.stl.Area" isImplicit="true" opposite="#p.stl.Area.component"/>
+    </ownedClasses>
+    <ownedClasses xmi:id="T.stl.Connector" name="Connector" superClasses="http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.OclElement">
+      <ownedInvariants xmi:id="cistl.Connector.SlotHasSameInputOutputTypeItemType" name="SlotHasSameInputOutputTypeItemType">
+        <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="&#xA;&#x9;&#x9;&#x9;self.isInput.itemtype = self.isOutput.itemtype"/>
+      </ownedInvariants>
+      <ownedProperties xmi:id="p.stl.Connector.isInput" name="isInput" type="#T.stl.Slot" opposite="#p.stl.Slot.connectorInput"/>
+      <ownedProperties xmi:id="p.stl.Connector.isOutput" name="isOutput" type="#T.stl.Slot" opposite="#p.stl.Slot.connectorOutput"/>
+      <ownedProperties xmi:id="p.stl.Connector.component" name="component" type="#//@ownedPackages.1/@ownedClasses.9" opposite="#p.stl.Component.connector"/>
+      <ownedProperties xmi:id="p.stl.Connector.Area" name="Area" isRequired="false" type="#T.stl.Area" isImplicit="true" opposite="#p.stl.Area.connector"/>
+    </ownedClasses>
+    <ownedClasses xmi:id="T.stl.Slot" name="Slot" superClasses="http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.OclElement">
+      <ownedProperties xmi:id="p.stl.Slot.connectorInput" name="connectorInput" isRequired="false" type="#T.stl.Connector" opposite="#p.stl.Connector.isInput"/>
+      <ownedProperties xmi:id="p.stl.Slot.connectorOutput" name="connectorOutput" isRequired="false" type="#T.stl.Connector" opposite="#p.stl.Connector.isOutput"/>
+      <ownedProperties xmi:id="p.stl.Slot.itemtype" name="itemtype" type="#T.stl.ItemType" opposite="#p.stl.ItemType.Slot"/>
+      <ownedProperties xmi:id="p.stl.Slot.name" name="name" isRequired="false" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#String"/>
+      <ownedProperties xmi:id="p.stl.Slot.isInput" name="isInput" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean"/>
+      <ownedProperties xmi:id="p.stl.Slot.isOutput" name="isOutput" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean"/>
+      <ownedProperties xmi:id="p.stl.Slot.Component" name="Component" isRequired="false" type="#T.stl.Component" isImplicit="true" opposite="#p.stl.Component.slot"/>
+    </ownedClasses>
+    <ownedClasses xmi:id="T.stl.Service" name="Service" superClasses="http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.OclElement">
+      <ownedProperties xmi:id="p.stl.Service.parameter" name="parameter" type="#//@ownedPackages.1/@ownedClasses.10" isComposite="true"
+          opposite="#p.stl.Parameter.Service"/>
+      <ownedProperties xmi:id="p.stl.Service.name" name="name" isRequired="false" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#String"/>
+      <ownedProperties xmi:id="p.stl.Service.reliability" name="reliability" type="pivot:DataType http://www.eclipse.org/emf/2003/XMLType.oclas#//@ownedPackages.0/@ownedClasses.14"/>
+      <ownedProperties xmi:id="p.stl.Service.processingTime" name="processingTime" type="pivot:DataType http://www.eclipse.org/emf/2003/XMLType.oclas#//@ownedPackages.0/@ownedClasses.14"/>
+      <ownedProperties xmi:id="p.stl.Service.cost" name="cost" type="pivot:DataType http://www.eclipse.org/emf/2003/XMLType.oclas#//@ownedPackages.0/@ownedClasses.14"/>
+      <ownedProperties xmi:id="p.stl.Service.Component" name="Component" isRequired="false" type="#T.stl.Component" isImplicit="true"
+          opposite="#p.stl.Component.service"/>
+    </ownedClasses>
+    <ownedClasses xmi:id="T.stl.Parameter" name="Parameter" superClasses="http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.OclElement">
+      <ownedProperties xmi:id="p.stl.Parameter.name" name="name" isRequired="false" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#String"/>
+      <ownedProperties xmi:id="p.stl.Parameter.Service" name="Service" isRequired="false" type="#T.stl.Service" isImplicit="true" opposite="#p.stl.Service.parameter"/>
+    </ownedClasses>
+    <ownedClasses xmi:id="T.stl.Machine" name="Machine" superClasses="#T.stl.Component"/>
+    <ownedClasses xmi:id="T.stl.Buffer" name="Buffer" superClasses="#T.stl.Component">
+      <ownedInvariants xmi:id="cistl.Buffer.OneInputSlotAndOneOutputSlot" name="OneInputSlotAndOneOutputSlot">
+        <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="&#xA;&#x9;&#x9;&#x9;self.slot -> select(e | e.isInput = true) -> size()=1 and self.slot -> select(e | e.isOutput = true) ->size()=1"/>
+      </ownedInvariants>
+    </ownedClasses>
+    <ownedClasses xmi:id="T.stl.Store" name="Store" superClasses="#T.stl.Component">
+      <ownedProperties xmi:id="p.stl.Store.capacity" name="capacity" type="pivot:DataType http://www.eclipse.org/emf/2002/Ecore.oclas#//@ownedPackages.0/@ownedClasses.39"
+          defaultValueString="0"/>
+      <ownedProperties xmi:id="p.stl.Store.itemtype" name="itemtype" type="#T.stl.ItemType" opposite="#p.stl.ItemType.Store"/>
+    </ownedClasses>
+    <ownedClasses xmi:id="T.stl.ItemGenerator" name="ItemGenerator" superClasses="#T.stl.Component">
+      <ownedInvariants xmi:id="cistl.ItemGenerator.ItemProducedSameAsOutput" name="ItemProducedSameAsOutput">
+        <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="&#xA;&#x9;&#x9; self.slot -> select(e | e.isOutput = true) -> forAll(e | e.itemtype = self.itemtype)&#xA;&#x9;&#x9;"/>
+      </ownedInvariants>
+      <ownedInvariants xmi:id="cistl.ItemGenerator.NoInputSlots" name="NoInputSlots">
+        <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="&#xA;&#x9;&#x9;&#x9;self.slot -> select(e | e.isInput = true) -> size()=0"/>
+      </ownedInvariants>
+      <ownedProperties xmi:id="p.stl.ItemGenerator.itemtype" name="itemtype" type="#T.stl.ItemType" opposite="#p.stl.ItemType.ItemGenerator"/>
+    </ownedClasses>
+    <ownedClasses xmi:id="T.stl.Conveyor" name="Conveyor" superClasses="#T.stl.Component"/>
+    <ownedClasses xmi:id="T.stl.ProductionStore" name="ProductionStore" superClasses="#T.stl.Store"/>
+    <ownedClasses xmi:id="T.stl.WasteStore" name="WasteStore" superClasses="#T.stl.Store">
+      <ownedInvariants xmi:id="cistl.WasteStore.NoOutputSlots" name="NoOutputSlots">
+        <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="&#xA;&#x9;&#x9;&#x9;self.slot -> select(e | e.isOutput = true) -> size()=0"/>
+      </ownedInvariants>
+    </ownedClasses>
+    <ownedClasses xmi:id="T.stl.TurnTable" name="TurnTable" superClasses="#T.stl.Component"/>
+  </ownedPackages>
+  <ownedPackages xmi:id="P.$$" name="$$" URI="http://www.eclipse.org/ocl/2015/Orphanage" nsPrefix="orphanage">
+    <ownedClasses xsi:type="pivot:OrderedSetType" name="OrderedSet" superClasses="#//@ownedPackages.1/@ownedClasses.11 #//@ownedPackages.1/@ownedClasses.12"
+        elementType="#T.stl.ItemType" isNullFree="true">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.stl.ItemType" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..OrderedSetT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:OrderedSetType" name="OrderedSet" superClasses="#//@ownedPackages.1/@ownedClasses.13 #//@ownedPackages.1/@ownedClasses.14"
+        elementType="#T.stl.Area" isNullFree="true" lower="1">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.stl.Area" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..OrderedSetT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:OrderedSetType" name="OrderedSet" superClasses="#//@ownedPackages.1/@ownedClasses.15 #//@ownedPackages.1/@ownedClasses.16"
+        elementType="#T.stl.Connector" isNullFree="true">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.stl.Connector" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..OrderedSetT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:OrderedSetType" name="OrderedSet" superClasses="#//@ownedPackages.1/@ownedClasses.17 #//@ownedPackages.1/@ownedClasses.18"
+        elementType="#T.stl.Component" isNullFree="true" lower="1">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.stl.Component" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..OrderedSetT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:BagType" name="Bag" superClasses="#//@ownedPackages.1/@ownedClasses.19" elementType="#T.stl.Store">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.stl.Store" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..BagT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:BagType" name="Bag" superClasses="#//@ownedPackages.1/@ownedClasses.20" elementType="#T.stl.ItemGenerator">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.stl.ItemGenerator" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..BagT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:BagType" name="Bag" superClasses="#//@ownedPackages.1/@ownedClasses.21" elementType="#T.stl.Slot">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.stl.Slot" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..BagT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:OrderedSetType" name="OrderedSet" superClasses="#//@ownedPackages.1/@ownedClasses.22 #//@ownedPackages.1/@ownedClasses.23"
+        elementType="#T.stl.Service" isNullFree="true">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.stl.Service" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..OrderedSetT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:OrderedSetType" name="OrderedSet" superClasses="#//@ownedPackages.1/@ownedClasses.24 #//@ownedPackages.1/@ownedClasses.25"
+        elementType="#T.stl.Slot" isNullFree="true" lower="1">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.stl.Slot" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..OrderedSetT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:OrderedSetType" name="OrderedSet" superClasses="#//@ownedPackages.1/@ownedClasses.17 #//@ownedPackages.1/@ownedClasses.18"
+        elementType="#T.stl.Component" isNullFree="true" lower="2" upper="2">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.stl.Component" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..OrderedSetT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:OrderedSetType" name="OrderedSet" superClasses="#//@ownedPackages.1/@ownedClasses.26 #//@ownedPackages.1/@ownedClasses.27"
+        elementType="#T.stl.Parameter" isNullFree="true">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.stl.Parameter" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..OrderedSetT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:CollectionType" name="OrderedCollection" superClasses="#//@ownedPackages.1/@ownedClasses.28" elementType="#T.stl.ItemType">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.stl.ItemType" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..OrderedCollectionT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:CollectionType" name="UniqueCollection" superClasses="#//@ownedPackages.1/@ownedClasses.28" elementType="#T.stl.ItemType">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.stl.ItemType" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..UniqueCollectionT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:CollectionType" name="OrderedCollection" superClasses="#//@ownedPackages.1/@ownedClasses.29" elementType="#T.stl.Area">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.stl.Area" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..OrderedCollectionT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:CollectionType" name="UniqueCollection" superClasses="#//@ownedPackages.1/@ownedClasses.29" elementType="#T.stl.Area">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.stl.Area" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..UniqueCollectionT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:CollectionType" name="OrderedCollection" superClasses="#//@ownedPackages.1/@ownedClasses.30" elementType="#T.stl.Connector">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.stl.Connector" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..OrderedCollectionT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:CollectionType" name="UniqueCollection" superClasses="#//@ownedPackages.1/@ownedClasses.30" elementType="#T.stl.Connector">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.stl.Connector" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..UniqueCollectionT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:CollectionType" name="OrderedCollection" superClasses="#//@ownedPackages.1/@ownedClasses.31" elementType="#T.stl.Component">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.stl.Component" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..OrderedCollectionT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:CollectionType" name="UniqueCollection" superClasses="#//@ownedPackages.1/@ownedClasses.31" elementType="#T.stl.Component">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.stl.Component" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..UniqueCollectionT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:CollectionType" name="Collection" superClasses="http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.OclAny"
+        elementType="#T.stl.Store">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.stl.Store" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..CollectionT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:CollectionType" name="Collection" superClasses="http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.OclAny"
+        elementType="#T.stl.ItemGenerator">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.stl.ItemGenerator" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..CollectionT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:CollectionType" name="Collection" superClasses="http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.OclAny"
+        elementType="#T.stl.Slot">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.stl.Slot" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..CollectionT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:CollectionType" name="OrderedCollection" superClasses="#//@ownedPackages.1/@ownedClasses.32" elementType="#T.stl.Service">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.stl.Service" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..OrderedCollectionT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:CollectionType" name="UniqueCollection" superClasses="#//@ownedPackages.1/@ownedClasses.32" elementType="#T.stl.Service">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.stl.Service" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..UniqueCollectionT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:CollectionType" name="OrderedCollection" superClasses="#//@ownedPackages.1/@ownedClasses.21" elementType="#T.stl.Slot">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.stl.Slot" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..OrderedCollectionT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:CollectionType" name="UniqueCollection" superClasses="#//@ownedPackages.1/@ownedClasses.21" elementType="#T.stl.Slot">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.stl.Slot" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..UniqueCollectionT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:CollectionType" name="OrderedCollection" superClasses="#//@ownedPackages.1/@ownedClasses.33" elementType="#T.stl.Parameter">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.stl.Parameter" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..OrderedCollectionT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:CollectionType" name="UniqueCollection" superClasses="#//@ownedPackages.1/@ownedClasses.33" elementType="#T.stl.Parameter">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.stl.Parameter" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..UniqueCollectionT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:CollectionType" name="Collection" superClasses="http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.OclAny"
+        elementType="#T.stl.ItemType">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.stl.ItemType" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..CollectionT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:CollectionType" name="Collection" superClasses="http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.OclAny"
+        elementType="#T.stl.Area">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.stl.Area" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..CollectionT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:CollectionType" name="Collection" superClasses="http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.OclAny"
+        elementType="#T.stl.Connector">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.stl.Connector" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..CollectionT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:CollectionType" name="Collection" superClasses="http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.OclAny"
+        elementType="#T.stl.Component">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.stl.Component" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..CollectionT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:CollectionType" name="Collection" superClasses="http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.OclAny"
+        elementType="#T.stl.Service">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.stl.Service" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..CollectionT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:CollectionType" name="Collection" superClasses="http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.OclAny"
+        elementType="#T.stl.Parameter">
+      <ownedBindings>
+        <ownedSubstitutions actual="#T.stl.Parameter" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..CollectionT"/>
+      </ownedBindings>
+    </ownedClasses>
+  </ownedPackages>
+</pivot:Model>
